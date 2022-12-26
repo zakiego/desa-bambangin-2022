@@ -1,9 +1,10 @@
-import "~/styles/globals.css";
+import "~/src/styles/globals.css";
 
 import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 
-import theme from "~/styles/theme";
+import theme from "~/src/styles/theme";
+import { trpc } from "~/src/utils/trpc";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,4 +14,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default trpc.withTRPC(MyApp);

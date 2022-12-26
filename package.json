@@ -13,10 +13,16 @@
     "@chakra-ui/react": "^2.4.4",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@tanstack/react-query": "^4.20.4",
+    "@trpc/client": "^10.7.0",
+    "@trpc/next": "^10.7.0",
+    "@trpc/react-query": "^10.7.0",
+    "@trpc/server": "^10.7.0",
     "framer-motion": "^8",
     "next": "13.1.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.0.7",
