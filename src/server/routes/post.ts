@@ -89,7 +89,7 @@ export const postRouter = router({
         },
       );
 
-      return data?.posts;
+      return data?.postsas;
     }),
 
   // getPostAndMorePosts: procedure

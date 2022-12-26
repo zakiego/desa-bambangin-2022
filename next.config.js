@@ -18,6 +18,9 @@ const nextConfig = {
       },
     ];
   },
+  images: {
+    domains: ["bambangindev.hack.id"],
+  },
 };
 
 module.exports = nextConfig;

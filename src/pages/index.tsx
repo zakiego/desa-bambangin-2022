@@ -1,13 +1,13 @@
-import { trpc } from "~/src/utils/trpc";
+import { Stack } from "@chakra-ui/react";
 
-export default function Index() {
-  const hello = trpc.post.getAllPostsForHome.useQuery({ preview: false });
-  if (!hello.data) {
-    return <div>Loading...</div>;
-  }
+import { Navbar } from "~/src/components/UI";
+
+const Index: React.FC = () => {
   return (
-    <div>
-      <p>{JSON.stringify(hello.data)}</p>
-    </div>
+    <Stack minH="100vh" bg="blue.800">
+      <Navbar />
+    </Stack>
   );
-}
+};
+
+export default Index;
