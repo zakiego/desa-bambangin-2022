@@ -17,12 +17,16 @@ import Link from "next/link";
 
 import { trpc } from "~/src/utils/trpc";
 
-export const Hero = () => {
-  const { data } = trpc.berita.getAll.useQuery();
+interface Props {
+  image: string;
+}
 
-  const image = data?.edges[1].node.featuredImage?.node.sourceUrl;
-  const title = data?.edges[1].node.title;
-  const slug = data?.edges[1].node.slug;
+export const Hero: React.FC<Props> = ({ image }) => {
+  // const { data } = trpc.berita.getAll.useQuery();
+
+  // const image = data?.edges[1].node.featuredImage?.node.sourceUrl;
+  // const title = data?.edges[1].node.title;
+  // const slug = data?.edges[1].node.slug;
 
   return (
     <Box
@@ -46,17 +50,17 @@ export const Hero = () => {
           </Breadcrumb>
 
           <Spacer />
-          <Heading as="h1" fontSize="4xl" color="white" py="4" maxW="lg">
+          {/* <Heading as="h1" fontSize="4xl" color="white" py="4" maxW="lg">
             {title}
-          </Heading>
+          </Heading> */}
 
-          <Link href={`berita/${slug}`}>
+          {/* <Link href={`berita/${slug}`}>
             <Button variant="outline" maxW="fit-content">
               <Text fontSize="md" color="white">
                 Baca Selengkapnya
               </Text>
             </Button>
-          </Link>
+          </Link> */}
 
           {/* <Code>{JSON.stringify(image)}</Code> */}
         </Stack>
