@@ -17,19 +17,31 @@ import {
 import { trpc } from "~/src/utils/trpc";
 
 export const Hero = () => {
-  const { data } = trpc.berita.getAll.useQuery();
+  // const { data } = trpc.berita.getAll.useQuery();
 
-  const image = data?.edges[1].node.featuredImage?.node.sourceUrl;
-  const title = data?.edges[1].node.title;
+  // const image = data?.edges[1].node.featuredImage?.node.sourceUrl;
+  // const title = data?.edges[1].node.title;
+  const dummyHeroImage =
+    "https://images.unsplash.com/photo-1664889167950-50b456b0e61c";
+
+  const dummyTitle =
+    "Potensi Perkebunan Jeruk di Desa Bambangin: Sebuah Analisis";
+
+  const imageGradient = `
+     linear-gradient(
+        180deg,
+        rgba(32, 17, 0, 0.34) 0%,
+        rgba(32, 17, 0, 0.88) 100%
+        )
+        `;
 
   return (
     <Box
-      bg="red"
       h="md"
-      backgroundImage={image}
+      background={`${imageGradient},url(${dummyHeroImage})`}
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
-      backgroundPosition="bottom"
+      backgroundPosition="center"
     >
       <Container maxW="container.xl" h="full">
         <Stack h="full" py="5">
@@ -45,7 +57,7 @@ export const Hero = () => {
 
           <Spacer />
           <Heading as="h1" fontSize="4xl" color="white" py="4" maxW="lg">
-            {title}
+            {dummyTitle}
           </Heading>
         </Stack>
       </Container>

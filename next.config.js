@@ -19,7 +19,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ["bambangindev.hack.id"],
+    domains: ["bambangindev.hack.id", "unsplash.com"],
   },
 };
 

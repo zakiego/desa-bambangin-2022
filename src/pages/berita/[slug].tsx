@@ -1,8 +1,8 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Spacer, Stack } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 
 import { Body, Hero } from "~/src/components/Berita/BeritaSlug";
-import { Navbar } from "~/src/components/UI";
+import { Footer, Navbar } from "~/src/components/UI";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.params as {
@@ -20,11 +20,13 @@ interface Props {
 
 const BeritaSlug: React.FC<Props> = ({ slug }) => {
   return (
-    <Box minH="100vh" bg="gray.50">
+    <Stack minH="100vh" bg="gray.50" spacing="0">
       <Navbar />
       <Hero />
       <Body slug={slug} />
-    </Box>
+      <Spacer />
+      <Footer />
+    </Stack>
   );
 };
 

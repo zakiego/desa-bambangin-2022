@@ -3,43 +3,61 @@ import {
   Box,
   Button,
   Container,
-  Heading,
   HStack,
+  Image,
   Menu,
   MenuButton,
-  MenuDivider,
-  MenuGroup,
   MenuItem,
-  MenuItemOption,
   MenuList,
-  MenuOptionGroup,
   Spacer,
-  Stack,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export const Navbar = () => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+  }, []);
+
+  // const bgColor = scrollPosition > 550 ? "primary.500" : "transparent";
+
   return (
-    <Box bg="white">
-      <Container maxW="container.xl" py="2">
+    <Box
+      bg="transparent"
+      position="fixed"
+      w="full"
+      backdropFilter="blur(30px)"
+      zIndex="100"
+    >
+      <Container maxW="container.xl" py="4">
         <HStack>
-          <Stack>
-            <Heading fontSize="lg">Desa Bambangin</Heading>
-          </Stack>
+          <Box>
+            <Image
+              src={"/static/icon/bambangin-white.svg"}
+              h="12"
+              alt="Bambangin Icon"
+            />
+          </Box>
           <Spacer />
           <HStack>
-            <Button variant="ghost" fontSize="md">
-              Home
+            <Button variant="navbar" fontSize="md">
+              Beranda
             </Button>
             <Link href="/berita">
-              <Button variant="ghost" fontSize="md">
+              <Button variant="navbar" fontSize="md">
                 Berita Bambangin
               </Button>
             </Link>
             <Menu>
               <MenuButton
                 as={Button}
-                variant="ghost"
+                variant="navbar"
                 rightIcon={<ChevronDownIcon />}
               >
                 Profil Bambangin

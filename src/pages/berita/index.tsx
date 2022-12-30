@@ -1,46 +1,53 @@
-import { Box, Stack, Text } from "@chakra-ui/react";
-import { createProxySSGHelpers } from "@trpc/react-query/ssg";
-import {
-  GetStaticPaths,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from "next";
-import superjson from "superjson";
+import { Box, Container } from "@chakra-ui/react";
+import { GetServerSidePropsContext } from "next";
 
-import { Hero } from "~/src/components/Berita/BeritaIndex";
-import { Navbar } from "~/src/components/UI";
-import { appRouter } from "~/src/server/routes/_app";
+import {
+  Hero,
+  ListBerita,
+  PaginationBerita,
+} from "~/src/components/Berita/BeritaIndex";
+import { Footer, Navbar } from "~/src/components/UI";
 import { trpc } from "~/src/utils/trpc";
 
-const Berita: React.FC = (props) => {
-  const { data } = trpc.berita.getAll.useQuery();
+export const getServerSideProps = (context: GetServerSidePropsContext) => {
+  const { page } = context.query as {
+    page?: string;
+  };
 
-  const image = data?.edges[1].node.featuredImage?.node.sourceUrl;
+  if (!page) {
+    return {
+      redirect: {
+        destination: "/berita?page=1",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
+
+const Berita: React.FC =  () => {
+
+  // const { data  } =  await trpc.post.getAllPosts.useQuery();
 
   return (
     <Box minH="100vh" bg="gray.50">
       <Navbar />
-      <Hero image={image} />
-      {/* <Text>{JSON.stringify(data)}</Text> */}
+      <Hero />
+      <Container maxW="container.xl" py="10">
+        {/* <SearchBerita />
+        <Box py="7">
+          <Box w="full" h="0.5" bg="gray.200" rounded="md" />
+        </Box> */}
+
+        <ListBerita />
+        <PaginationBerita totalPage={10} />
+      </Container>
+      <Footer />
     </Box>
   );
 };
 
 export default Berita;
-
-export async function getStaticProps() {
-  const ssg = await createProxySSGHelpers({
-    router: appRouter,
-    ctx: {},
-    transformer: superjson, // optional - adds superjson serialization
-  });
-
-  // prefetch `post.byId`
-  await ssg.berita.getAll.prefetch();
-  return {
-    props: {
-      trpcState: ssg.dehydrate(),
-    },
-    revalidate: 1,
-  };
-}
