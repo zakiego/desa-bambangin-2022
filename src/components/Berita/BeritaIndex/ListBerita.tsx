@@ -1,12 +1,20 @@
 import { Box, Image, Stack, Text } from "@chakra-ui/react";
+import DOMPurify from "isomorphic-dompurify";
 
-export const ListBerita: React.FC = () => {
+import { GetAllPosts } from "~/src/server/routes/post";
+import getImage from "~/src/utils/getImage";
+
+interface Props {
+  berita: GetAllPosts["posts"][];
+}
+
+export const ListBerita: React.FC<Props> = ({ berita }) => {
   return (
     <Box
     // w="60%"
     >
       <Stack spacing="6">
-        {dummyListBerita.map((berita, id) => {
+        {berita.map((berita, id) => {
           return <BeritaCard key={id} {...berita} />;
         })}
       </Stack>
@@ -14,18 +22,12 @@ export const ListBerita: React.FC = () => {
   );
 };
 
-interface ListBeritaProps {
-  title: string;
-  date: string;
-  content: string;
-  image: string;
-}
-
-const BeritaCard: React.FC<ListBeritaProps> = ({
-  title,
-  date,
-  content,
-  image,
+const BeritaCard: React.FC<GetAllPosts["posts"]> = ({
+  post_title,
+  post_content,
+  post_date,
+  post_name,
+  thumbnail,
 }) => {
   return (
     <Stack
@@ -41,7 +43,7 @@ const BeritaCard: React.FC<ListBeritaProps> = ({
     >
       <Box w="20%" h="32" borderRadius="md">
         <Image
-          src={image}
+          src={thumbnail ? getImage(thumbnail) : dummyListBerita[0].image}
           alt="image"
           w="full"
           h="full"
@@ -60,20 +62,30 @@ const BeritaCard: React.FC<ListBeritaProps> = ({
             },
           }}
         >
-          {title}
+          {post_title}
         </Text>
         <Text fontSize="xs" color="gray.500">
-          {date}
+          {new Date(post_date).toLocaleDateString("id-ID", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
         </Text>
-        <Text fontSize="sm" color="gray.500" noOfLines={2}>
-          {content}
-        </Text>
+        <Box
+          fontSize="sm"
+          color="gray.500"
+          noOfLines={2}
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(post_content),
+          }}
+        />
       </Stack>
     </Stack>
   );
 };
 
-const dummyListBerita: ListBeritaProps[] = [
+const dummyListBerita = [
   {
     title: "Kebakaran Hutan Amazon Terus Berlangsung",
     content:

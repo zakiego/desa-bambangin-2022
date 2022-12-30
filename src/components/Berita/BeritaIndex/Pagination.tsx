@@ -2,11 +2,14 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, HStack, Spacer } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-interface Props {
-  totalPage: number;
-}
+import { PaginationData } from "~/src/utils/pagination";
 
-export const PaginationBerita: React.FC<Props> = ({ totalPage }) => {
+export const PaginationBerita: React.FC<PaginationData> = ({
+  total_data,
+  max_page,
+  has_prev,
+  has_next,
+}) => {
   const router = useRouter();
   const { query } = router;
   const page = parseInt(query.page as string);
@@ -30,7 +33,7 @@ export const PaginationBerita: React.FC<Props> = ({ totalPage }) => {
   return (
     <HStack pt="10">
       <Button
-        disabled={!(page > 1)}
+        disabled={!has_prev}
         onClick={handlePrev}
         colorScheme="orange"
         variant="outline"
@@ -42,7 +45,7 @@ export const PaginationBerita: React.FC<Props> = ({ totalPage }) => {
       <Spacer />
 
       <Button
-        disabled={!(page < totalPage)}
+        disabled={!has_next}
         onClick={handleNext}
         colorScheme="orange"
         variant="outline"
