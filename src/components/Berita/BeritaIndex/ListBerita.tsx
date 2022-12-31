@@ -1,5 +1,11 @@
-import { Box, Image, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  // Image,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import DOMPurify from "isomorphic-dompurify";
+import Image from "next/image";
 
 import { GetAllPosts } from "~/src/server/routes/post";
 import getImage from "~/src/utils/getImage";
@@ -41,14 +47,16 @@ const BeritaCard: React.FC<GetAllPosts["posts"]> = ({
       _hover={{ cursor: "pointer", bg: "gray.100" }}
       data-component-name="BeritaCard"
     >
-      <Box w="20%" h="32" borderRadius="md">
+      <Box w="20%" h="32" borderRadius="md" position="relative">
         <Image
           src={thumbnail ? getImage(thumbnail) : dummyListBerita[0].image}
-          alt="image"
-          w="full"
-          h="full"
-          objectFit="cover"
-          borderRadius="md"
+          fill
+          quality={30}
+          alt={`image ${post_name}`}
+          style={{
+            objectFit: "cover",
+            borderRadius: "0.375rem",
+          }}
         />
       </Box>
       <Stack w="80%">

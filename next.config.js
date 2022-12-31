@@ -19,7 +19,13 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ["bambangindev.hack.id", "unsplash.com"],
+    domains: ["bambangindev.hack.id", "unsplash.com", "images.unsplash.com"],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "103.30.194.102",
+      },
+    ],
   },
 };
 

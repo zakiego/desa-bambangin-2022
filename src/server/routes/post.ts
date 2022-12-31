@@ -30,7 +30,7 @@ export const postRouter = router({
       const limit = 5;
 
       if (category === undefined) {
-        const data = await prisma.$queryRaw<GetAllPosts[]>`
+        const data = await prisma.$queryRaw<GetAllPosts["posts"][]>`
       SELECT
           SQL_CALC_FOUND_ROWS
           wp_posts.post_title,
@@ -70,7 +70,7 @@ export const postRouter = router({
         };
       }
 
-      const data = await prisma.$queryRaw<GetAllPosts[]>`
+      const data = await prisma.$queryRaw<GetAllPosts["posts"][]>`
       SELECT
           SQL_CALC_FOUND_ROWS
           wp_posts.post_title,

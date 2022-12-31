@@ -7,8 +7,6 @@ import {
   PaginationBerita,
 } from "~/src/components/Berita/BeritaIndex";
 import { Footer, Navbar } from "~/src/components/UI";
-import { GetAllPosts } from "~/src/server/routes/post";
-import { PaginationData } from "~/src/utils/pagination";
 import { trpc } from "~/src/utils/trpc";
 
 export const getServerSideProps = (context: GetServerSidePropsContext) => {
@@ -37,16 +35,10 @@ interface Props {
 }
 
 const Berita: React.FC<Props> = ({ page }) => {
-  const { data, isFetched } = trpc.post.getAllPosts.useQuery({
+  const { data } = trpc.post.getAllPosts.useQuery({
     page: page,
     category: "berita",
-  }) as {
-    data: {
-      posts: GetAllPosts["posts"][];
-      paging: PaginationData;
-    };
-    isFetched: boolean;
-  };
+  });
 
   if (!data) {
     return (
