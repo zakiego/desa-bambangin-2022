@@ -51,7 +51,15 @@ const theme = extendTheme(
       },
     },
   },
-  withProse(),
+  withProse({
+    baseStyle: {
+      img: {
+        maxH: "md",
+        marginLeft: "auto",
+        marginRight: "auto",
+      },
+    },
+  }),
 );
 
 export default theme;

@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 const listMobileMenu = [
   { name: "Beranda", href: "/" },
   { name: "Berita Bambangin", href: "/berita" },
-  { name: "Tentang Bambangin", href: "/tentang" },
+  { name: "Profil Desa", href: "/profil-desa" },
   { name: "Sejarah Bambangin", href: "/sejarah" },
 ];
 
@@ -96,7 +96,9 @@ const RightDesktop = () => {
           Profil Bambangin
         </MenuButton>
         <MenuList>
-          <MenuItem>Tentang Bambangin</MenuItem>
+          <Link href="/profil-desa">
+            <MenuItem>Profil Desa</MenuItem>
+          </Link>
           <MenuItem>Sejarah Bambangin</MenuItem>
         </MenuList>
       </Menu>
