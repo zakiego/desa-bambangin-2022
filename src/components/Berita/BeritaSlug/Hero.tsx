@@ -1,12 +1,8 @@
-import { ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Box,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
-  Button,
-  Code,
   Container,
   Heading,
   Spacer,
@@ -14,18 +10,20 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { trpc } from "~/src/utils/trpc";
+import dateToIndonesiaFormat from "~/src/utils/date";
+import getImage from "~/src/utils/getImage";
 
-export const Hero = () => {
-  // const { data } = trpc.berita.getAll.useQuery();
+interface Props {
+  title: string;
+  date: string;
+  thumbnail: string | null;
+}
 
-  // const image = data?.edges[1].node.featuredImage?.node.sourceUrl;
-  // const title = data?.edges[1].node.title;
+export const Hero: React.FC<Props> = ({ title, date, thumbnail }) => {
   const dummyHeroImage =
     "https://images.unsplash.com/photo-1664889167950-50b456b0e61c";
 
-  const dummyTitle =
-    "Potensi Perkebunan Jeruk di Desa Bambangin: Sebuah Analisis";
+  const heroImage = thumbnail ? getImage(thumbnail) : dummyHeroImage;
 
   const imageGradient = `
      linear-gradient(
@@ -38,27 +36,31 @@ export const Hero = () => {
   return (
     <Box
       h="md"
-      background={`${imageGradient},url(${dummyHeroImage})`}
+      background={`${imageGradient},url(${heroImage})`}
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       backgroundPosition="center"
     >
       <Container maxW="container.xl" h="full">
-        <Stack h="full" py="5">
-          <Breadcrumb separator={<ChevronRightIcon />}>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">Beranda</BreadcrumbLink>
+        <Stack h="full" pt="28" pb="10" spacing="2">
+          <Breadcrumb>
+            <BreadcrumbItem color="white">
+              <BreadcrumbLink href="/" color="primary.500">
+                Beranda
+              </BreadcrumbLink>
             </BreadcrumbItem>
 
-            <BreadcrumbItem isCurrentPage>
+            <BreadcrumbItem color="white">
               <BreadcrumbLink href="/berita">Berita</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
 
           <Spacer />
-          <Heading as="h1" fontSize="4xl" color="white" py="4" maxW="lg">
-            {dummyTitle}
+
+          <Heading as="h1" fontSize="4xl" color="white" pb="2" maxW="lg">
+            {title}
           </Heading>
+          <Text color="whiteAlpha.800">{dateToIndonesiaFormat(date)}</Text>
         </Stack>
       </Container>
     </Box>

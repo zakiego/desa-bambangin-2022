@@ -6,6 +6,7 @@ import {
   ListBerita,
   PaginationBerita,
 } from "~/src/components/Berita/BeritaIndex";
+import { PageWrapper } from "~/src/components/Layout";
 import { Footer, Navbar } from "~/src/components/UI";
 import { trpc } from "~/src/utils/trpc";
 
@@ -55,21 +56,23 @@ const Berita: React.FC<Props> = ({ page }) => {
   }
 
   return (
-    <Box minH="100vh" bg="gray.50">
-      <Navbar />
-      <Hero />
+    <PageWrapper title="Portal Desa Bambangin - Berita">
+      <Box minH="100vh" bg="gray.50">
+        <Navbar />
+        <Hero />
 
-      <Container maxW="container.xl" py="10">
-        {/* <SearchBerita />
-        <Box py="7">
-          <Box w="full" h="0.5" bg="gray.200" rounded="md" />
-        </Box> */}
+        <Container maxW="container.xl" py="10">
+          {/* <SearchBerita />
+          <Box py="7">
+            <Box w="full" h="0.5" bg="gray.200" rounded="md" />
+          </Box> */}
 
-        <ListBerita berita={data?.posts} />
-        <PaginationBerita {...data?.paging} />
-      </Container>
-      <Footer />
-    </Box>
+          <ListBerita berita={data?.posts} />
+          <PaginationBerita {...data?.paging} />
+        </Container>
+        <Footer />
+      </Box>
+    </PageWrapper>
   );
 };
 

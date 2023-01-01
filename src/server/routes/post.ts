@@ -1,4 +1,6 @@
 import { wp_posts, wp_terms, wp_users } from "@prisma/client";
+import { TRPCError } from "@trpc/server";
+import { omit } from "lodash";
 import { z } from "zod";
 
 import { prisma } from "~/src/lib/prisma";
@@ -23,11 +25,11 @@ export const postRouter = router({
       z.object({
         page: z.number(),
         category: z.string().optional(),
+        limit: z.number().optional(),
       }),
     )
-    .query(async ({ input: { category, page } }) => {
-      const offset = (page - 1) * 5;
-      const limit = 5;
+    .query(async ({ input: { category, page, limit = 5 } }) => {
+      const offset = (page - 1) * limit;
 
       if (category === undefined) {
         const data = await prisma.$queryRaw<GetAllPosts["posts"][]>`
@@ -109,4 +111,70 @@ export const postRouter = router({
         paging: paginationData({ total_data, limit, page }),
       };
     }),
+
+  getPostDetail: procedure
+    .input(z.object({ slug: z.string() }))
+    .query(async ({ input: { slug } }) => {
+      const data = await prisma.wp_posts.findFirst({
+        where: {
+          post_name: slug,
+        },
+        select: {
+          ID: true,
+          post_title: true,
+          post_content: true,
+          post_date: true,
+        },
+      });
+
+      if (!data) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "An unexpected error occurred, please try again later.",
+        });
+      }
+
+      const thumbnailId = await prisma.wp_postmeta.findFirst({
+        where: {
+          post_id: data.ID,
+          meta_key: "_thumbnail_id",
+        },
+        select: {
+          meta_value: true,
+        },
+      });
+
+      if (!thumbnailId?.meta_value) {
+        return { ...omit(data, "ID"), thumbnail: null };
+      }
+
+      const thumbnail = await prisma.wp_postmeta.findFirst({
+        where: {
+          post_id: parseInt(thumbnailId.meta_value),
+          meta_key: "_wp_attached_file",
+        },
+        select: {
+          meta_value: true,
+        },
+      });
+
+      if (!thumbnail?.meta_value) {
+        return { ...omit(data, "ID"), thumbnail: null };
+      }
+
+      return { ...omit(data, "ID"), thumbnail: thumbnail.meta_value };
+    }),
+
+  // getAllSlug: procedure.query(async () => {
+  //   const data = await prisma.wp_posts.findMany({
+  //     where: {
+  //       post_status: "publish",
+  //     },
+  //     select: {
+  //       post_name: true,
+  //     },
+  //   });
+
+  //   return data;
+  // }),
 });

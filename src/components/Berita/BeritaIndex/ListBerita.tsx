@@ -6,13 +6,18 @@ import {
 } from "@chakra-ui/react";
 import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
+import Link from "next/link";
 
 import { GetAllPosts } from "~/src/server/routes/post";
 import getImage from "~/src/utils/getImage";
 
 interface Props {
-  berita: GetAllPosts["posts"][];
+  berita: Array<Berita>;
 }
+
+export type Berita = Omit<GetAllPosts["posts"], "post_date"> & {
+  post_date: string;
+};
 
 export const ListBerita: React.FC<Props> = ({ berita }) => {
   return (
@@ -28,7 +33,7 @@ export const ListBerita: React.FC<Props> = ({ berita }) => {
   );
 };
 
-const BeritaCard: React.FC<GetAllPosts["posts"]> = ({
+const BeritaCard: React.FC<Berita> = ({
   post_title,
   post_content,
   post_date,
@@ -36,60 +41,62 @@ const BeritaCard: React.FC<GetAllPosts["posts"]> = ({
   thumbnail,
 }) => {
   return (
-    <Stack
-      p="2"
-      spacing="4"
-      alignItems="center"
-      direction="row"
-      bg="gray.50"
-      w="full"
-      borderRadius="md"
-      _hover={{ cursor: "pointer", bg: "gray.100" }}
-      data-component-name="BeritaCard"
-    >
-      <Box w="20%" h="32" borderRadius="md" position="relative">
-        <Image
-          src={thumbnail ? getImage(thumbnail) : dummyListBerita[0].image}
-          fill
-          quality={30}
-          alt={`image ${post_name}`}
-          style={{
-            objectFit: "cover",
-            borderRadius: "0.375rem",
-          }}
-        />
-      </Box>
-      <Stack w="80%">
-        <Text
-          fontSize="md"
-          fontWeight="bold"
-          color="gray.800"
-          sx={{
-            '[data-component-name="BeritaCard"]:hover &': {
-              color: "primary.500",
-            },
-          }}
-        >
-          {post_title}
-        </Text>
-        <Text fontSize="xs" color="gray.500">
-          {new Date(post_date).toLocaleDateString("id-ID", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </Text>
-        <Box
-          fontSize="sm"
-          color="gray.500"
-          noOfLines={2}
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(post_content),
-          }}
-        />
+    <Link href={`/berita/${post_name}`}>
+      <Stack
+        p="2"
+        spacing="4"
+        alignItems="center"
+        direction="row"
+        bg="gray.50"
+        w="full"
+        borderRadius="md"
+        _hover={{ cursor: "pointer", bg: "gray.100" }}
+        data-component-name="BeritaCard"
+      >
+        <Box w="20%" h="32" borderRadius="md" position="relative">
+          <Image
+            src={thumbnail ? getImage(thumbnail) : dummyListBerita[0].image}
+            fill
+            quality={30}
+            alt={`image ${post_name}`}
+            style={{
+              objectFit: "cover",
+              borderRadius: "0.375rem",
+            }}
+          />
+        </Box>
+        <Stack w="80%">
+          <Text
+            fontSize="md"
+            fontWeight="bold"
+            color="gray.800"
+            sx={{
+              '[data-component-name="BeritaCard"]:hover &': {
+                color: "primary.500",
+              },
+            }}
+          >
+            {post_title}
+          </Text>
+          <Text fontSize="xs" color="gray.500">
+            {new Date(post_date).toLocaleDateString("id-ID", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </Text>
+          <Box
+            fontSize="sm"
+            color="gray.500"
+            noOfLines={2}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(post_content),
+            }}
+          />
+        </Stack>
       </Stack>
-    </Stack>
+    </Link>
   );
 };
 
