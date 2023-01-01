@@ -1,6 +1,6 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, HStack, Spacer } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 
 import { PaginationData } from "~/src/utils/pagination";
 
@@ -37,8 +37,8 @@ export const PaginationBerita: React.FC<PaginationData> = ({
         onClick={handlePrev}
         colorScheme="orange"
         variant="outline"
-        leftIcon={<ChevronLeftIcon />}
-        size="md"
+        leftIcon={<GoChevronLeft />}
+        size={{ base: "sm", md: "md" }}
       >
         Sebelumnya
       </Button>
@@ -49,8 +49,8 @@ export const PaginationBerita: React.FC<PaginationData> = ({
         onClick={handleNext}
         colorScheme="orange"
         variant="outline"
-        rightIcon={<ChevronRightIcon />}
-        size="md"
+        rightIcon={<GoChevronRight />}
+        size={{ base: "sm", md: "md" }}
       >
         Selanjutnya
       </Button>

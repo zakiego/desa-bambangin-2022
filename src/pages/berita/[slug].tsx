@@ -30,7 +30,7 @@ const BeritaSlug: React.FC<Props> = ({ slug }) => {
   if (!data || !anotherNews) {
     return (
       <div>
-        <CodeString code={data} />
+        {/* <CodeString code={data} /> */}
         <p>Loading...</p>
       </div>
     );

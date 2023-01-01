@@ -10,6 +10,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
@@ -29,14 +30,25 @@ export const Hero: React.FC = () => {
         `;
 
   return (
-    <Box
-      h="xl"
-      background={`${imageGradient},url(${dummyHeroImage2})`}
-      backgroundRepeat="no-repeat"
-      backgroundSize="cover"
-      backgroundPosition="center"
-    >
-      <Container maxW="container.xl" h="full">
+    <Box h={{ base: "lg", md: "xl" }} position="relative">
+      <Box
+        bg={`${imageGradient}`}
+        zIndex="1"
+        h="full"
+        w="full"
+        position="absolute"
+      />
+
+      <Image
+        src={dummyHeroImage2}
+        fill
+        alt="Hero image"
+        style={{
+          objectFit: "cover",
+          position: "absolute",
+        }}
+      />
+      <Container maxW="container.xl" h="full" zIndex="2" position="relative">
         <Stack h="full" pt="28" pb="10" spacing="2">
           <Breadcrumb>
             <BreadcrumbItem color="white">
@@ -52,13 +64,15 @@ export const Hero: React.FC = () => {
 
           <Spacer />
 
-          <Balancer>
-            <Heading as="h1" fontSize="4xl" color="white">
-              {dummyTitle1}
-            </Heading>
-          </Balancer>
+          <Heading as="h1" fontSize={{ base: "3xl", md: "5xl" }} color="white">
+            <Balancer>{dummyTitle1}</Balancer>
+          </Heading>
 
-          <Text color="whiteAlpha.700" pb="7">
+          <Text
+            color="whiteAlpha.700"
+            pb="7"
+            fontSize={{ base: "sm", md: "md" }}
+          >
             Selasa, 12 Januari 2022
           </Text>
 
@@ -69,7 +83,7 @@ export const Hero: React.FC = () => {
               _hover={{ bg: "whiteAlpha.200" }}
               _active={{ bg: "whiteAlpha.300" }}
             >
-              <Text fontSize="md" color="white">
+              <Text fontSize={{ base: "sm", md: "md" }} color="white">
                 Baca Selengkapnya
               </Text>
             </Button>

@@ -53,7 +53,12 @@ const BeritaCard: React.FC<Berita> = ({
         _hover={{ cursor: "pointer", bg: "gray.100" }}
         data-component-name="BeritaCard"
       >
-        <Box w="20%" h="32" borderRadius="md" position="relative">
+        <Box
+          w={{ base: "30%", md: "20%" }}
+          h="32"
+          borderRadius="md"
+          position="relative"
+        >
           <Image
             src={thumbnail ? getImage(thumbnail) : dummyListBerita[0].image}
             fill
@@ -65,9 +70,9 @@ const BeritaCard: React.FC<Berita> = ({
             }}
           />
         </Box>
-        <Stack w="80%">
+        <Stack w={{ base: "70%", md: "80%" }}>
           <Text
-            fontSize="md"
+            fontSize={{ base: "md", md: "xl" }}
             fontWeight="bold"
             color="gray.800"
             sx={{
@@ -75,10 +80,11 @@ const BeritaCard: React.FC<Berita> = ({
                 color: "primary.500",
               },
             }}
+            noOfLines={2}
           >
             {post_title}
           </Text>
-          <Text fontSize="xs" color="gray.500">
+          <Text fontSize={{ base: "xs", md: "md" }} color="gray.500">
             {new Date(post_date).toLocaleDateString("id-ID", {
               weekday: "long",
               year: "numeric",
@@ -89,7 +95,7 @@ const BeritaCard: React.FC<Berita> = ({
           <Box
             fontSize="sm"
             color="gray.500"
-            noOfLines={2}
+            noOfLines={{ base: 2, md: 3 }}
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(post_content),
             }}

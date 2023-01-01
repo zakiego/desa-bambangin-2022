@@ -9,6 +9,8 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import Image from "next/image";
+import Balancer from "react-wrap-balancer";
 
 import dateToIndonesiaFormat from "~/src/utils/date";
 import getImage from "~/src/utils/getImage";
@@ -34,14 +36,26 @@ export const Hero: React.FC<Props> = ({ title, date, thumbnail }) => {
         `;
 
   return (
-    <Box
-      h="md"
-      background={`${imageGradient},url(${heroImage})`}
-      backgroundRepeat="no-repeat"
-      backgroundSize="cover"
-      backgroundPosition="center"
-    >
-      <Container maxW="container.xl" h="full">
+    <Box h="md" position="relative">
+      <Box
+        bg={`${imageGradient}`}
+        zIndex="1"
+        h="full"
+        w="full"
+        position="absolute"
+      />
+
+      <Image
+        src={heroImage}
+        fill
+        alt="Hero image"
+        style={{
+          objectFit: "cover",
+          position: "absolute",
+        }}
+      />
+
+      <Container maxW="container.xl" h="full" position="relative" zIndex="2">
         <Stack h="full" pt="28" pb="10" spacing="2">
           <Breadcrumb>
             <BreadcrumbItem color="white">
@@ -51,15 +65,23 @@ export const Hero: React.FC<Props> = ({ title, date, thumbnail }) => {
             </BreadcrumbItem>
 
             <BreadcrumbItem color="white">
-              <BreadcrumbLink href="/berita">Berita</BreadcrumbLink>
+              <BreadcrumbLink href="/berita" color="primary.500">
+                Berita
+              </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
 
           <Spacer />
 
-          <Heading as="h1" fontSize="4xl" color="white" pb="2" maxW="lg">
-            {title}
+          <Heading
+            as="h1"
+            fontSize={{ base: "3xl", md: "5xl" }}
+            color="white"
+            pb="2"
+          >
+            <Balancer>{title}</Balancer>
           </Heading>
+
           <Text color="whiteAlpha.800">{dateToIndonesiaFormat(date)}</Text>
         </Stack>
       </Container>
