@@ -24,13 +24,8 @@ const nextConfig = {
       "unsplash.com",
       "images.unsplash.com",
       "103.30.194.102",
+      "bambangin-wp.zakidev.my.id",
     ],
-    // remotePatterns: [
-    //   {
-    //     protocol: "http",
-    //     hostname: "103.30.194.102",
-    //   },
-    // ],
   },
 };
 
