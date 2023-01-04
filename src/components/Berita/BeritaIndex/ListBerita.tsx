@@ -25,7 +25,7 @@ export const ListBerita: React.FC<Props> = ({ berita }) => {
     // w="60%"
     >
       <Stack spacing="6">
-        {berita.map((berita, id) => {
+        {berita.slice(1, 5).map((berita, id) => {
           return <BeritaCard key={id} {...berita} />;
         })}
       </Stack>

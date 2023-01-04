@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 
 import { AnotherNews, Body, Hero } from "~/src/components/Berita/BeritaSlug";
 import { PageWrapper } from "~/src/components/Layout";
-import { Footer, Navbar } from "~/src/components/UI";
+import { Footer, Loading, Navbar } from "~/src/components/UI";
 import { trpc } from "~/src/utils/trpc";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -23,19 +23,22 @@ interface Props {
 const BeritaSlug: React.FC<Props> = ({ slug }) => {
   const { data } = trpc.post.getPostDetail.useQuery({ slug });
   const { data: anotherNews } = trpc.post.getAllPosts.useQuery({
-    page: 1,
     category: "berita",
-    limit: 3,
+    limit: 1000,
+    page: 1,
   });
 
   if (!data || !anotherNews) {
-    return (
-      <div>
-        {/* <CodeString code={data} /> */}
-        <p>Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
+
+  const pick3RandomAnotherNewsWithoutSlug = () => {
+    const filtered = anotherNews.posts.filter(
+      (post) => post.post_name !== slug,
+    );
+    const shuffled = filtered.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  };
 
   return (
     <PageWrapper title={`${data.post_title} - Berita | Portal Desa Bambangin`}>
@@ -46,7 +49,6 @@ const BeritaSlug: React.FC<Props> = ({ slug }) => {
           date={data?.post_date}
           thumbnail={data?.thumbnail}
         />
-        {/* <CodeString code={data} /> */}
         <Box pt="10" pb="10">
           <Container maxW="container.xl">
             <Stack
@@ -57,7 +59,7 @@ const BeritaSlug: React.FC<Props> = ({ slug }) => {
                 <Body content={data.post_content} />
               </Box>
               <Box w={{ base: "100%", md: "30%" }} pt="6">
-                <AnotherNews data={anotherNews.posts} />
+                <AnotherNews data={pick3RandomAnotherNewsWithoutSlug()} />
               </Box>
             </Stack>
           </Container>

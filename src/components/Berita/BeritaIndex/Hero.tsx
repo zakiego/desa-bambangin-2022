@@ -14,13 +14,20 @@ import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
-export const Hero: React.FC = () => {
-  const dummyHeroImage2 =
-    "https://images.unsplash.com/photo-1664889167950-50b456b0e61c";
+import dateToIndonesiaFormat from "~/src/utils/date";
+import getImage from "~/src/utils/getImage";
 
-  const dummyTitle1 =
-    "Potensi Perkebunan Jeruk di Desa Bambangin: Sebuah Analisis";
+interface Props {
+  title: string;
+  image: string | null;
+  date: string;
+  slug: string;
+}
 
+const dummyHeroImage =
+  "https://images.unsplash.com/photo-1664889167950-50b456b0e61c";
+
+export const Hero: React.FC<Props> = ({ title, image, date, slug }) => {
   const imageGradient = `
      linear-gradient(
         180deg,
@@ -40,7 +47,7 @@ export const Hero: React.FC = () => {
       />
 
       <Image
-        src={dummyHeroImage2}
+        src={image ? getImage(image) : dummyHeroImage}
         fill
         alt="Hero image"
         style={{
@@ -65,7 +72,7 @@ export const Hero: React.FC = () => {
           <Spacer />
 
           <Heading as="h1" fontSize={{ base: "3xl", md: "5xl" }} color="white">
-            <Balancer>{dummyTitle1}</Balancer>
+            <Balancer>{title}</Balancer>
           </Heading>
 
           <Text
@@ -73,10 +80,10 @@ export const Hero: React.FC = () => {
             pb="7"
             fontSize={{ base: "sm", md: "md" }}
           >
-            Selasa, 12 Januari 2022
+            {dateToIndonesiaFormat(date)}
           </Text>
 
-          <Link href="#">
+          <Link href={`/berita/${slug}`}>
             <Button
               variant="outline"
               maxW="fit-content"

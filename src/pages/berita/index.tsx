@@ -1,4 +1,4 @@
-import { Box, Container, Text } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
 
 import {
@@ -7,7 +7,7 @@ import {
   PaginationBerita,
 } from "~/src/components/Berita/BeritaIndex";
 import { PageWrapper } from "~/src/components/Layout";
-import { Footer, Navbar } from "~/src/components/UI";
+import { Footer, Loading, Navbar } from "~/src/components/UI";
 import { trpc } from "~/src/utils/trpc";
 
 export const getServerSideProps = (context: GetServerSidePropsContext) => {
@@ -42,31 +42,22 @@ const Berita: React.FC<Props> = ({ page }) => {
   });
 
   if (!data) {
-    return (
-      <Box minH="100vh" bg="gray.50">
-        <Navbar />
-        <Hero />
-
-        <Container maxW="container.xl" py="10">
-          <Text>Loading...</Text>
-        </Container>
-        <Footer />
-      </Box>
-    );
+    return <Loading />;
   }
+
+  const heroData = data.posts[0];
 
   return (
     <PageWrapper title="Berita | Portal Desa Bambangin">
       <Box minH="100vh" bg="gray.50">
         <Navbar />
-        <Hero />
-
+        <Hero
+          title={heroData.post_title}
+          image={heroData.thumbnail}
+          date={heroData.post_date}
+          slug={heroData.post_name}
+        />
         <Container maxW="container.xl" py="10">
-          {/* <SearchBerita />
-          <Box py="7">
-            <Box w="full" h="0.5" bg="gray.200" rounded="md" />
-          </Box> */}
-
           <ListBerita berita={data?.posts} />
           <PaginationBerita {...data?.paging} />
         </Container>
