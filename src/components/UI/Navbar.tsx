@@ -65,16 +65,18 @@ export const Navbar = () => {
 
 const RightMobile = () => {
   return (
-    <Menu>
-      <MenuButton as={IconButton} variant="navbar" icon={<HamburgerIcon />} />
-      <MenuList>
-        {listMobileMenu.map((item, index) => (
-          <Link key={index} href={item.href}>
-            <MenuItem>{item.name}</MenuItem>
-          </Link>
-        ))}
-      </MenuList>
-    </Menu>
+    <Box display={{ base: "block", md: "none" }}>
+      <Menu>
+        <MenuButton as={IconButton} variant="navbar" icon={<HamburgerIcon />} />
+        <MenuList>
+          {listMobileMenu.map((item, index) => (
+            <Link key={index} href={item.href}>
+              <MenuItem>{item.name}</MenuItem>
+            </Link>
+          ))}
+        </MenuList>
+      </Menu>
+    </Box>
   );
 };
 
