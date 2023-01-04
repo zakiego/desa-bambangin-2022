@@ -1,4 +1,5 @@
 import { Box, Button, Container, Heading, Stack, Text } from "@chakra-ui/react";
+import Link from "next/link";
 import { GoChevronRight } from "react-icons/go";
 import Balancer from "react-wrap-balancer";
 
@@ -51,21 +52,23 @@ export const SelayangPandang = () => {
             </Balancer>
           </Text>
 
-          <Button
-            w="max-content"
-            size="sm"
-            variant="solid"
-            bg="primary.400"
-            color="white"
-            _hover={{
-              bg: "primary.500",
-            }}
-            _active={{
-              bg: "primary.500",
-            }}
-          >
-            Baca Selengkapnya <GoChevronRight />
-          </Button>
+          <Link href="/profil-desa">
+            <Button
+              w="max-content"
+              size="sm"
+              variant="solid"
+              bg="primary.400"
+              color="white"
+              _hover={{
+                bg: "primary.500",
+              }}
+              _active={{
+                bg: "primary.500",
+              }}
+            >
+              Baca Selengkapnya <GoChevronRight />
+            </Button>
+          </Link>
         </Stack>
       </Container>
     </Box>
