@@ -46,11 +46,13 @@ export const Navbar = () => {
       <Container maxW="container.xl" py="4">
         <HStack>
           <Box>
-            <Image
-              src={"/static/icon/bambangin-white.svg"}
-              h="12"
-              alt="Bambangin Icon"
-            />
+            <Link href="/">
+              <Image
+                src={"/static/icon/bambangin-white.svg"}
+                h="12"
+                alt="Bambangin Icon"
+              />
+            </Link>
           </Box>
           <Spacer />
           <RightDesktop />
