@@ -2,7 +2,6 @@ import { Box, Heading, Link, Stack, Text } from "@chakra-ui/react";
 import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 
-import { GetAllPosts } from "~/src/server/routes/post";
 import getImage from "~/src/utils/getImage";
 
 import { Berita } from "../BeritaIndex";
@@ -30,7 +29,6 @@ export const AnotherNews: React.FC<Props> = ({ data }) => {
 const Card: React.FC<Berita> = ({
   post_title,
   post_content,
-  post_date,
   post_name,
   thumbnail,
 }) => {

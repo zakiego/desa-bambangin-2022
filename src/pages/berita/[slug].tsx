@@ -1,26 +1,24 @@
 import { Box, Container, Spacer, Stack } from "@chakra-ui/react";
+import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import { GetServerSideProps } from "next";
+import {
+  GetStaticPaths,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from "next";
+import superjson from "superjson";
 
 import { AnotherNews, Body, Hero } from "~/src/components/Berita/BeritaSlug";
 import { PageWrapper } from "~/src/components/Layout";
 import { Footer, Loading, Navbar } from "~/src/components/UI";
+import { prisma } from "~/src/lib/prisma";
+import { appRouter } from "~/src/server/routes/_app";
+import { GetAllPosts } from "~/src/server/routes/post";
 import { trpc } from "~/src/utils/trpc";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { slug } = context.params as {
-    slug: string;
-  };
-
-  return {
-    props: { slug },
-  };
-};
-
-interface Props {
-  slug: string;
-}
-
-const BeritaSlug: React.FC<Props> = ({ slug }) => {
+const BeritaSlug: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  slug,
+}) => {
   const { data } = trpc.post.getPostDetail.useQuery({ slug });
   const { data: anotherNews } = trpc.post.getAllPosts.useQuery({
     category: "berita",
@@ -72,3 +70,84 @@ const BeritaSlug: React.FC<Props> = ({ slug }) => {
 };
 
 export default BeritaSlug;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // const allBerita = await trpc.post.getAllPosts.useQuery({
+  //   category: "berita",
+  //   limit: 1000,
+  //   page: 1,
+  // });
+
+  const allBerita = await prisma.$queryRaw<GetAllPosts["posts"][]>`
+      SELECT
+          SQL_CALC_FOUND_ROWS
+          wp_posts.post_title,
+          wp_posts.post_name,
+          wp_posts.post_content,
+          wp_posts.post_date,
+          wp_terms.name,
+          wp_terms.slug,
+          wp_users.display_name,
+          wpm2.meta_value as thumbnail
+       FROM wp_posts
+          JOIN wp_term_relationships on wp_posts.ID = wp_term_relationships.object_id
+          JOIN wp_terms on wp_term_relationships.term_taxonomy_id = wp_terms.term_id
+          JOIN wp_term_taxonomy on wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
+          JOIN wp_users on wp_posts.post_author = wp_users.ID
+          LEFT JOIN wp_postmeta wpm
+             ON (wp_posts.ID = wpm.post_id AND wpm.meta_key = '_thumbnail_id')
+          LEFT JOIN wp_postmeta wpm2
+            ON (wpm.meta_value = wpm2.post_id AND wpm2.meta_key = '_wp_attached_file')
+       WHERE wp_posts.post_status = 'publish'
+       ORDER BY wp_posts.ID,wp_terms.slug`;
+
+  if (!allBerita) {
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
+
+  const allBeritaSlug = allBerita.map((post) => ({
+    params: {
+      slug: post.post_name,
+    },
+  }));
+
+  return {
+    paths: allBeritaSlug,
+    fallback: false,
+  };
+};
+
+export async function getStaticProps(
+  context: GetStaticPropsContext<{ slug: string }>,
+) {
+  const ssg = await createProxySSGHelpers({
+    router: appRouter,
+    ctx: {},
+    transformer: superjson, // optional - adds superjson serialization
+  });
+
+  const slug = context.params?.slug as string;
+
+  await ssg.post.getPostDetail.prefetch({ slug });
+
+  return {
+    props: {
+      trpcState: ssg.dehydrate(),
+      slug,
+    },
+    revalidate: 1,
+  };
+}
+
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const { slug } = context.params as {
+//     slug: string;
+//   };
+
+//   return {
+//     props: { slug },
+//   };
+// };
