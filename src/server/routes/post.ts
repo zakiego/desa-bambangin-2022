@@ -164,17 +164,4 @@ export const postRouter = router({
 
       return { ...omit(data, "ID"), thumbnail: thumbnail.meta_value };
     }),
-
-  // getAllSlug: procedure.query(async () => {
-  //   const data = await prisma.wp_posts.findMany({
-  //     where: {
-  //       post_status: "publish",
-  //     },
-  //     select: {
-  //       post_name: true,
-  //     },
-  //   });
-
-  //   return data;
-  // }),
 });
