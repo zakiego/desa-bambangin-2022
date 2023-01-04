@@ -72,12 +72,6 @@ const BeritaSlug: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default BeritaSlug;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const allBerita = await trpc.post.getAllPosts.useQuery({
-  //   category: "berita",
-  //   limit: 1000,
-  //   page: 1,
-  // });
-
   const allBerita = await prisma.$queryRaw<GetAllPosts["posts"][]>`
       SELECT
           SQL_CALC_FOUND_ROWS
@@ -132,6 +126,11 @@ export async function getStaticProps(
   const slug = context.params?.slug as string;
 
   await ssg.post.getPostDetail.prefetch({ slug });
+  await ssg.post.getAllPosts.prefetch({
+    category: "berita",
+    limit: 1000,
+    page: 1,
+  });
 
   return {
     props: {
@@ -141,13 +140,3 @@ export async function getStaticProps(
     revalidate: 1,
   };
 }
-
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const { slug } = context.params as {
-//     slug: string;
-//   };
-
-//   return {
-//     props: { slug },
-//   };
-// };
