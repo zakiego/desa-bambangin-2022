@@ -37,7 +37,7 @@ export const Navbar = () => {
 
   return (
     <Box
-      bg="transparent"
+      bg="blackAlpha.500"
       position="fixed"
       w="full"
       backdropFilter="blur(30px)"
@@ -83,9 +83,11 @@ const RightMobile = () => {
 const RightDesktop = () => {
   return (
     <HStack display={{ base: "none", md: "block" }}>
-      <Button variant="navbar" fontSize="md">
-        Beranda
-      </Button>
+      <Link href="/">
+        <Button variant="navbar" fontSize="md">
+          Beranda
+        </Button>
+      </Link>
       <Link href="/berita">
         <Button variant="navbar" fontSize="md">
           Berita Bambangin

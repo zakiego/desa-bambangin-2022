@@ -36,7 +36,7 @@ export const Footer = () => {
             </HStack>
           </Link>
           <Text fontSize="sm" color="whiteAlpha.900">
-            Copyright © 2022. All Rights Reserved.
+            Copyright © 2023. All Rights Reserved.
           </Text>
         </Stack>
       </Container>

@@ -1,6 +1,5 @@
 import { Box, Container, Spacer, Stack } from "@chakra-ui/react";
 import { createProxySSGHelpers } from "@trpc/react-query/ssg";
-import { GetServerSideProps } from "next";
 import {
   GetStaticPaths,
   GetStaticPropsContext,
@@ -11,6 +10,7 @@ import superjson from "superjson";
 import { AnotherNews, Body, Hero } from "~/src/components/Berita/BeritaSlug";
 import { PageWrapper } from "~/src/components/Layout";
 import { Footer, Loading, Navbar } from "~/src/components/UI";
+import { REVALIDATE_WP_POSTS_EVERY_5_MINUTES } from "~/src/lib/constans";
 import { prisma } from "~/src/lib/prisma";
 import { appRouter } from "~/src/server/routes/_app";
 import { GetAllPosts } from "~/src/server/routes/post";
@@ -137,6 +137,6 @@ export async function getStaticProps(
       trpcState: ssg.dehydrate(),
       slug,
     },
-    revalidate: 1,
+    revalidate: REVALIDATE_WP_POSTS_EVERY_5_MINUTES,
   };
 }

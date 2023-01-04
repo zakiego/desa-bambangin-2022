@@ -9,6 +9,8 @@ import { Footer, Loading, Navbar } from "~/src/components/UI";
 import { appRouter } from "~/src/server/routes/_app";
 import { trpc } from "~/src/utils/trpc";
 
+import { REVALIDATE_WP_POSTS_EVERY_5_MINUTES } from "../lib/constans";
+
 const ProfildDesa = () => {
   const postQuery = trpc.post.getPostDetail.useQuery({ slug: "profil-desa" });
 
@@ -56,6 +58,6 @@ export async function getStaticProps() {
     props: {
       trpcState: ssg.dehydrate(),
     },
-    revalidate: 1,
+    revalidate: REVALIDATE_WP_POSTS_EVERY_5_MINUTES,
   };
 }
