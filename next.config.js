@@ -19,13 +19,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: [
-      "bambangindev.hack.id",
-      "unsplash.com",
-      "images.unsplash.com",
-      "103.30.194.102",
-      "bambangin-wp.zakidev.my.id",
-    ],
+    domains: ["unsplash.com", "images.unsplash.com", "cms.bambangin.com"],
   },
 };
 
