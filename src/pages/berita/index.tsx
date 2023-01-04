@@ -56,7 +56,7 @@ const Berita: React.FC<Props> = ({ page }) => {
   }
 
   return (
-    <PageWrapper title="Portal Desa Bambangin - Berita">
+    <PageWrapper title="Berita | Portal Desa Bambangin">
       <Box minH="100vh" bg="gray.50">
         <Navbar />
         <Hero />
