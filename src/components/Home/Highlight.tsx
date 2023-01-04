@@ -24,21 +24,23 @@ export const Highlight: React.FC<Props> = ({ berita }) => {
           })}
         </Stack>
         <Box pt="5">
-          <Button
-            w={{ base: "full", md: "max-content" }}
-            size="sm"
-            variant="solid"
-            bg="primary.400"
-            color="white"
-            _hover={{
-              bg: "primary.500",
-            }}
-            _active={{
-              bg: "primary.500",
-            }}
-          >
-            Lihat Berita Lainnya <GoChevronRight />
-          </Button>
+          <Link href="/berita">
+            <Button
+              w={{ base: "full", md: "max-content" }}
+              size="sm"
+              variant="solid"
+              bg="primary.400"
+              color="white"
+              _hover={{
+                bg: "primary.500",
+              }}
+              _active={{
+                bg: "primary.500",
+              }}
+            >
+              Lihat Berita Lainnya <GoChevronRight />
+            </Button>
+          </Link>
         </Box>
       </Container>
     </Box>
