@@ -3,7 +3,8 @@ import { TRPCError } from "@trpc/server";
 import { omit } from "lodash";
 import { z } from "zod";
 
-import { prisma } from "~/src/lib/prisma";
+// import { prisma } from "~/src/lib/prisma";
+import { prisma } from "~/src/server/prisma";
 import { procedure, router } from "~/src/server/trpc";
 import paginationData, { PaginationData } from "~/src/utils/pagination";
 
