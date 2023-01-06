@@ -17,7 +17,7 @@ import getImage from "~/src/utils/getImage";
 
 interface Props {
   title: string;
-  date: string;
+  date: Date;
   thumbnail: string | null;
 }
 

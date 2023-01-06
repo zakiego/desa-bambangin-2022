@@ -2,12 +2,11 @@ import { Box, Heading, Link, Stack, Text } from "@chakra-ui/react";
 import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 
+import { GetAllPosts } from "~/src/server/routes/post";
 import getImage from "~/src/utils/getImage";
 
-import { Berita } from "../BeritaIndex";
-
 interface Props {
-  data: Berita[];
+  data: GetAllPosts["posts"][];
 }
 
 export const AnotherNews: React.FC<Props> = ({ data }) => {
@@ -26,7 +25,7 @@ export const AnotherNews: React.FC<Props> = ({ data }) => {
   );
 };
 
-const Card: React.FC<Berita> = ({
+const Card: React.FC<GetAllPosts["posts"]> = ({
   post_title,
   post_content,
   post_name,

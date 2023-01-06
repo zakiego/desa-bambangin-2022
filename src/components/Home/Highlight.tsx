@@ -2,15 +2,14 @@ import { Box, Button, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 import Link from "next/link";
-
-import { DUMMY_IMAGE } from "~/src/lib/constans";
-import getImage from "~/src/utils/getImage";
-
-import type { Berita } from "../Berita/BeritaIndex";
 import { GoChevronRight } from "react-icons/go";
 
+import { DUMMY_IMAGE } from "~/src/lib/constans";
+import { GetAllPosts } from "~/src/server/routes/post";
+import getImage from "~/src/utils/getImage";
+
 interface Props {
-  berita: Array<Berita>;
+  berita: GetAllPosts["posts"][];
 }
 
 export const Highlight: React.FC<Props> = ({ berita }) => {
@@ -47,7 +46,7 @@ export const Highlight: React.FC<Props> = ({ berita }) => {
   );
 };
 
-const HighlightCard: React.FC<Berita> = ({
+const HighlightCard: React.FC<GetAllPosts["posts"]> = ({
   post_title,
   post_content,
   post_date,

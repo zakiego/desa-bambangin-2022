@@ -8,12 +8,8 @@ import { GetAllPosts } from "~/src/server/routes/post";
 import getImage from "~/src/utils/getImage";
 
 interface Props {
-  berita: Array<Berita>;
+  berita: GetAllPosts["posts"][];
 }
-
-export type Berita = Omit<GetAllPosts["posts"], "post_date"> & {
-  post_date: string;
-};
 
 export const ListBerita: React.FC<Props> = ({ berita }) => {
   return (
@@ -29,7 +25,7 @@ export const ListBerita: React.FC<Props> = ({ berita }) => {
   );
 };
 
-const BeritaCard: React.FC<Berita> = ({
+const BeritaCard: React.FC<GetAllPosts["posts"]> = ({
   post_title,
   post_content,
   post_date,
