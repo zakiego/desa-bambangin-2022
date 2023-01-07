@@ -36,12 +36,12 @@ interface Props {
 }
 
 const Berita: React.FC<Props> = ({ page }) => {
-  const { data, error } = trpc.post.getAllPosts.useQuery({
+  const { data, isError } = trpc.post.getAllPosts.useQuery({
     page: page,
     category: "berita",
   });
 
-  if (error) {
+  if (isError) {
     return <Error />;
   }
 

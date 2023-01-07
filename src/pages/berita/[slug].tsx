@@ -20,11 +20,11 @@ import { trpc } from "~/src/utils/trpc";
 const BeritaSlug: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   slug,
 }) => {
-  const { data, error: errorPostDetail } = trpc.post.getPostDetail.useQuery({
+  const { data, isError: errorPostDetail } = trpc.post.getPostDetail.useQuery({
     slug,
   });
 
-  const { data: anotherNews, error: errorAllPost } =
+  const { data: anotherNews, isError: errorAllPost } =
     trpc.post.getAllPosts.useQuery({
       category: "berita",
       limit: 1000,

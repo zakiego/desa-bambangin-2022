@@ -12,11 +12,11 @@ import { trpc } from "~/src/utils/trpc";
 import { REVALIDATE_WP_POSTS } from "../lib/constans";
 
 const ProfildDesa = () => {
-  const { data, isLoading, error } = trpc.post.getPostDetail.useQuery({
+  const { data, isLoading, isError } = trpc.post.getPostDetail.useQuery({
     slug: "profil-desa",
   });
 
-  if (error) {
+  if (isError) {
     return <Error />;
   }
 

@@ -32,13 +32,13 @@ export async function getStaticProps() {
 }
 
 const Index: React.FC = () => {
-  const { data, error } = trpc.post.getAllPosts.useQuery({
+  const { data, isError } = trpc.post.getAllPosts.useQuery({
     page: 1,
     category: "berita",
     limit: 3,
   });
 
-  if (error) {
+  if (isError) {
     return <Error />;
   }
 
