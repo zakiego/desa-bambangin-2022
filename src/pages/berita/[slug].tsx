@@ -102,7 +102,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
           LEFT JOIN wp_postmeta wpm2
             ON (wpm.meta_value = wpm2.post_id AND wpm2.meta_key = '_wp_attached_file')
        WHERE wp_posts.post_status = 'publish'
-       ORDER BY wp_posts.ID,wp_terms.slug`;
+       ORDER BY wp_posts.post_date DESC`;
 
   if (!allBerita) {
     return {
