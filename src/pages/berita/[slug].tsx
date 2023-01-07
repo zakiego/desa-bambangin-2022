@@ -119,7 +119,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: allBeritaSlug,
-    fallback: false,
+    fallback: true,
   };
 };
 
