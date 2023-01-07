@@ -4,10 +4,10 @@ import SuperJSON from "superjson";
 
 import { HeroHome, Highlight, SelayangPandang } from "~/src/components/Home";
 import { PageWrapper } from "~/src/components/Layout";
-import { Footer, Loading, Navbar } from "~/src/components/UI";
+import { Error, Footer, Loading, Navbar } from "~/src/components/UI";
 import { trpc } from "~/src/utils/trpc";
 
-import { REVALIDATE_WP_POSTS_EVERY_5_MINUTES } from "../lib/constans";
+import { REVALIDATE_WP_POSTS } from "../lib/constans";
 import { appRouter } from "../server/routes/_app";
 
 export async function getStaticProps() {
@@ -27,16 +27,20 @@ export async function getStaticProps() {
     props: {
       trpcState: ssg.dehydrate(),
     },
-    revalidate: REVALIDATE_WP_POSTS_EVERY_5_MINUTES,
+    revalidate: REVALIDATE_WP_POSTS,
   };
 }
 
 const Index: React.FC = () => {
-  const { data } = trpc.post.getAllPosts.useQuery({
+  const { data, error } = trpc.post.getAllPosts.useQuery({
     page: 1,
     category: "berita",
     limit: 3,
   });
+
+  if (error) {
+    return <Error />;
+  }
 
   if (!data) {
     return <Loading />;

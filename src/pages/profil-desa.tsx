@@ -5,20 +5,24 @@ import superjson from "superjson";
 
 import { Body, Hero } from "~/src/components/Berita/BeritaSlug";
 import { PageWrapper } from "~/src/components/Layout";
-import { Footer, Loading, Navbar } from "~/src/components/UI";
+import { Error, Footer, Loading, Navbar } from "~/src/components/UI";
 import { appRouter } from "~/src/server/routes/_app";
 import { trpc } from "~/src/utils/trpc";
 
-import { REVALIDATE_WP_POSTS_EVERY_5_MINUTES } from "../lib/constans";
+import { REVALIDATE_WP_POSTS } from "../lib/constans";
 
 const ProfildDesa = () => {
-  const postQuery = trpc.post.getPostDetail.useQuery({ slug: "profil-desa" });
+  const { data, isLoading, error } = trpc.post.getPostDetail.useQuery({
+    slug: "profil-desa",
+  });
 
-  if (postQuery.status !== "success") {
-    return <Loading />;
+  if (error) {
+    return <Error />;
   }
 
-  const { data } = postQuery;
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <PageWrapper title="Profil Desa Bambangin | Portal Desa Bambangin">
@@ -58,6 +62,6 @@ export async function getStaticProps() {
     props: {
       trpcState: ssg.dehydrate(),
     },
-    revalidate: REVALIDATE_WP_POSTS_EVERY_5_MINUTES,
+    revalidate: REVALIDATE_WP_POSTS,
   };
 }

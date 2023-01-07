@@ -9,8 +9,8 @@ import superjson from "superjson";
 
 import { AnotherNews, Body, Hero } from "~/src/components/Berita/BeritaSlug";
 import { PageWrapper } from "~/src/components/Layout";
-import { Footer, Loading, Navbar } from "~/src/components/UI";
-import { REVALIDATE_WP_POSTS_EVERY_5_MINUTES } from "~/src/lib/constans";
+import { Error, Footer, Loading, Navbar } from "~/src/components/UI";
+import { REVALIDATE_WP_POSTS } from "~/src/lib/constans";
 import { prisma } from "~/src/server/prisma";
 // import { prisma } from "~/src/lib/prisma";
 import { appRouter } from "~/src/server/routes/_app";
@@ -20,12 +20,20 @@ import { trpc } from "~/src/utils/trpc";
 const BeritaSlug: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   slug,
 }) => {
-  const { data } = trpc.post.getPostDetail.useQuery({ slug });
-  const { data: anotherNews } = trpc.post.getAllPosts.useQuery({
-    category: "berita",
-    limit: 1000,
-    page: 1,
+  const { data, error: errorPostDetail } = trpc.post.getPostDetail.useQuery({
+    slug,
   });
+
+  const { data: anotherNews, error: errorAllPost } =
+    trpc.post.getAllPosts.useQuery({
+      category: "berita",
+      limit: 1000,
+      page: 1,
+    });
+
+  if (errorPostDetail || errorAllPost) {
+    return <Error />;
+  }
 
   if (!data || !anotherNews) {
     return <Loading />;
@@ -138,6 +146,6 @@ export async function getStaticProps(
       trpcState: ssg.dehydrate(),
       slug,
     },
-    revalidate: REVALIDATE_WP_POSTS_EVERY_5_MINUTES,
+    revalidate: REVALIDATE_WP_POSTS,
   };
 }

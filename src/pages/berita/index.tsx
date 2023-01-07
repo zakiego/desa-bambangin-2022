@@ -7,7 +7,7 @@ import {
   PaginationBerita,
 } from "~/src/components/Berita/BeritaIndex";
 import { PageWrapper } from "~/src/components/Layout";
-import { Footer, Loading, Navbar } from "~/src/components/UI";
+import { Error, Footer, Loading, Navbar } from "~/src/components/UI";
 import { trpc } from "~/src/utils/trpc";
 
 export const getServerSideProps = (context: GetServerSidePropsContext) => {
@@ -36,10 +36,14 @@ interface Props {
 }
 
 const Berita: React.FC<Props> = ({ page }) => {
-  const { data } = trpc.post.getAllPosts.useQuery({
+  const { data, error } = trpc.post.getAllPosts.useQuery({
     page: page,
     category: "berita",
   });
+
+  if (error) {
+    return <Error />;
+  }
 
   if (!data) {
     return <Loading />;
