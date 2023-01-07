@@ -8,4 +8,4 @@ export const DUMMY_IMAGE =
 
 const ONE_MINUTE_IN_SECONDS = 60;
 const ONE_SECOND = 1;
-export const REVALIDATE_WP_POSTS = ONE_SECOND;
+export const REVALIDATE_WP_POSTS = ONE_MINUTE_IN_SECONDS;
