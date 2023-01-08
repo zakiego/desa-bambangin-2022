@@ -17,7 +17,7 @@ export const Highlight: React.FC<Props> = ({ berita }) => {
     <Box rounded="md" px="6" py="6" bg="gray.50">
       <Container maxW="container.xl">
         <Heading>Berita Terbaru</Heading>
-        <Stack direction={{ base: "column", md: "row" }} pt="5" spacing="5">
+        <Stack direction={{ base: "column", lg: "row" }} pt="5" spacing="5">
           {berita.map((berita, id) => {
             return <HighlightCard key={id} {...berita} />;
           })}
@@ -54,67 +54,73 @@ const HighlightCard: React.FC<GetAllPosts["posts"]> = ({
   thumbnail,
 }) => {
   return (
-    <Link href={`/berita/${post_name}`}>
-      <Stack
-        p="2"
-        spacing="4"
-        alignItems="center"
-        direction={{ base: "row", md: "row" }}
-        bg="gray.50"
-        w="full"
-        borderRadius="md"
-        _hover={{ cursor: "pointer", bg: "gray.100" }}
-        data-component-name="BeritaCard"
-      >
-        <Box
-          w={{ base: "40%", md: "40%" }}
-          h="32"
+    <Box w={{ base: "full", lg: "33%" }}>
+      <Link href={`/berita/${post_name}`}>
+        <Stack
+          p="2"
+          spacing="4"
+          alignItems="center"
+          direction={{ base: "row", lg: "row" }}
+          bg="gray.50"
+          w="full"
           borderRadius="md"
-          position="relative"
+          _hover={{ cursor: "pointer", bg: "gray.100" }}
+          data-component-name="BeritaCard"
         >
-          <Image
-            src={thumbnail ? getImage(thumbnail) : DUMMY_IMAGE}
-            fill
-            quality={30}
-            alt={`image ${post_name}`}
-            style={{
-              objectFit: "cover",
-              borderRadius: "0.375rem",
-            }}
-          />
-        </Box>
-        <Stack w={{ base: "60%", md: "60%" }}>
-          <Text
-            fontSize={{ base: "md", md: "md" }}
-            fontWeight="bold"
-            color="gray.800"
-            sx={{
-              '[data-component-name="BeritaCard"]:hover &': {
-                color: "primary.500",
-              },
-            }}
-            noOfLines={2}
-          >
-            {post_title}
-          </Text>
-          <Text fontSize={{ base: "xs", md: "sm" }} color="gray.500">
-            {new Date(post_date).toLocaleDateString("id-ID", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </Text>
           <Box
-            fontSize="sm"
-            color="gray.500"
-            noOfLines={{ base: 3, md: 2 }}
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(post_content),
-            }}
-          />
+            w={{ base: "40%", md: "40%" }}
+            h="32"
+            borderRadius="md"
+            position="relative"
+          >
+            <Image
+              src={thumbnail ? getImage(thumbnail) : DUMMY_IMAGE}
+              fill
+              quality={30}
+              alt={`image ${post_name}`}
+              style={{
+                objectFit: "cover",
+                borderRadius: "0.375rem",
+              }}
+            />
+          </Box>
+          <Stack w={{ base: "60%", md: "60%" }}>
+            <Text
+              fontSize={{ base: "md", md: "md" }}
+              fontWeight="bold"
+              color="gray.800"
+              sx={{
+                '[data-component-name="BeritaCard"]:hover &': {
+                  color: "primary.500",
+                },
+              }}
+              noOfLines={2}
+            >
+              {post_title}
+            </Text>
+            <Text
+              display={{ base: "none", sm: "block" }}
+              fontSize={{ base: "xs", md: "sm" }}
+              color="gray.500"
+            >
+              {new Date(post_date).toLocaleDateString("id-ID", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </Text>
+            <Box
+              fontSize="sm"
+              color="gray.500"
+              noOfLines={{ base: 2, md: 2 }}
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(post_content),
+              }}
+            />
+          </Stack>
         </Stack>
-      </Stack>
-    </Link>
+      </Link>
+    </Box>
   );
 };
