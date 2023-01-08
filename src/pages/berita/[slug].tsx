@@ -138,8 +138,6 @@ export async function getStaticProps(
 
   const slug = context.params?.slug as string;
 
-  console.log("Slug : ", slug);
-
   await ssg.post.getPostDetail.prefetch({ slug });
   await ssg.post.getAllPosts.prefetch({
     category: "berita",
