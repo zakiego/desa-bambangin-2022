@@ -63,13 +63,13 @@ const BeritaSlug: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <Box pt="10" pb="10">
           <Container maxW="container.xl">
             <Stack
-              direction={{ base: "column", md: "row" }}
-              spacing={{ base: "0", md: "16" }}
+              direction={{ base: "column", lg: "row" }}
+              spacing={{ base: "0", lg: "16" }}
             >
-              <Box w={{ base: "100%", md: "70%" }}>
+              <Box w={{ base: "100%", lg: "70%" }}>
                 <Body content={data.post_content} />
               </Box>
-              <Box w={{ base: "100%", md: "30%" }} pt="6">
+              <Box w={{ base: "100%", lg: "30%" }} pt="6">
                 <AnotherNews data={pick3RandomAnotherNewsWithoutSlug()} />
               </Box>
             </Stack>
