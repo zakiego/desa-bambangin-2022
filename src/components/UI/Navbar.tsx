@@ -5,15 +5,14 @@ import {
   Container,
   HStack,
   IconButton,
-  Image,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Spacer,
 } from "@chakra-ui/react";
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 const listMobileMenu = [
   { name: "Beranda", href: "/" },
@@ -23,18 +22,6 @@ const listMobileMenu = [
 ];
 
 export const Navbar = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-  }, []);
-
-  // const bgColor = scrollPosition > 550 ? "primary.500" : "transparent";
-
   return (
     <Box
       bg="blackAlpha.500"
@@ -48,9 +35,11 @@ export const Navbar = () => {
           <Box>
             <Link href="/">
               <Image
-                src={"/static/icon/bambangin-white.svg"}
-                h="12"
+                src="/static/icon/bambangin-white.svg"
+                width={180}
+                height={50}
                 alt="Bambangin Icon"
+                priority
               />
             </Link>
           </Box>
