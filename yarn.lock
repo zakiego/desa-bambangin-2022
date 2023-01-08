@@ -1189,7 +1189,7 @@
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.1.1.tgz#6ff26488dc7674ef2bfdd1ca28fe43eed1113bea"
   integrity sha512-vFMyXtPjSAiOXOywMojxfKIqE3VWN5RCAx+tT3AS3pcKjMLFTCJFUWsKv8hC+87Z1F4W3r68qTwDFZIFmd5Xkw==
 
-"@next/eslint-plugin-next@13.1.1", "@next/eslint-plugin-next@^13.0.7":
+"@next/eslint-plugin-next@13.1.1", "@next/eslint-plugin-next@^13.1.1":
   version "13.1.1"
   resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-13.1.1.tgz#cc5e419cc85587f73f2ac0046a91df01dc6fef8b"
   integrity sha512-SBrOFS8PC3nQ5aeZmawJkjKkWjwK9RoxvBSv/86nZp0ubdoVQoko8r8htALd9ufp16NhacCdqhu9bzZLDWtALQ==
@@ -1304,10 +1304,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
-"@prisma/client@^4.8.0":
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.8.0.tgz#6ec7adaca6a2e233d7e41dbe7cc6d0fa6143a407"
-  integrity sha512-Y1riB0p2W52kh3zgssP/YAhln3RjBFcJy3uwEiyjmU+TQYh6QTZDRFBo3JtBWuq2FyMOl1Rye8jxzUP+n0l5Cg==
+"@prisma/client@^4.8.1":
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.8.1.tgz#51c16488dfac4e74a275a2753bf20262a65f2a2b"
+  integrity sha512-d4xhZhETmeXK/yZ7K0KcVOzEfI5YKGGEr4F5SBV04/MU4ncN/HcE28sy3e4Yt8UFW0ZuImKFQJE+9rWt9WbGSQ==
   dependencies:
     "@prisma/engines-version" "4.8.0-61.d6e67a83f971b175a593ccc12e15c4a757f93ffe"
 
@@ -1316,10 +1316,10 @@
   resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-4.8.0-61.d6e67a83f971b175a593ccc12e15c4a757f93ffe.tgz#30401aba1029e7d32e3cb717e705a7c92ccc211e"
   integrity sha512-MHSOSexomRMom8QN4t7bu87wPPD+pa+hW9+71JnVcF3DqyyO/ycCLhRL1we3EojRpZxKvuyGho2REQsMCvxcJw==
 
-"@prisma/engines@4.8.0":
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.8.0.tgz#5123c67dc0d2caa008268fc63081ca2d68b2ed7e"
-  integrity sha512-A1Asn2rxZMlLAj1HTyfaCv0VQrLUv034jVay05QlqZg1qiHPeA3/pGTfNMijbsMYCsGVxfWEJuaZZuNxXGMCrA==
+"@prisma/engines@4.8.1":
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.8.1.tgz#8428f7dcd7912c6073024511376595017630dc85"
+  integrity sha512-93tctjNXcIS+i/e552IO6tqw17sX8liivv8WX9lDMCpEEe3ci+nT9F+1oHtAafqruXLepKF80i/D20Mm+ESlOw==
 
 "@rushstack/eslint-patch@^1.1.3":
   version "1.2.0"
@@ -1351,27 +1351,27 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
-"@trpc/client@^10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@trpc/client/-/client-10.7.0.tgz#73793dfdfd1a0b8d0484c69bfc558dfd28843fe6"
-  integrity sha512-xCPc2hp37REJst6TXMkJvdc85CHvxpVY6YVdZIjl7uCYoQcrstwy8AWi7ElB3x7e19Cweke+9CAaUXKwAE1AKQ==
+"@trpc/client@^10.8.1":
+  version "10.8.1"
+  resolved "https://registry.yarnpkg.com/@trpc/client/-/client-10.8.1.tgz#779e92788e29ab80c5f8705df95b3664d0c0ea2e"
+  integrity sha512-DQ+Y3ek/rjCYaI8ifeeVPVW/KIO6ryye32Xdm9VAkdhd1humYD/4rN2CQ7K1zPTeNpbIpuckEAMEadeB4ItcMQ==
 
-"@trpc/next@^10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@trpc/next/-/next-10.7.0.tgz#33ec7d134f9d3093e59cba1170dcb75bc9b914c0"
-  integrity sha512-ZLY4J9IgEHN2op0UM14NCwCDyodRUw8Pmxgnpr62+UMIhDll6uggb2an8Op87l9EeYdKhKe2VavDWphI8vFGgw==
+"@trpc/next@^10.8.1":
+  version "10.8.1"
+  resolved "https://registry.yarnpkg.com/@trpc/next/-/next-10.8.1.tgz#75b2b113108d8b028c99eca9778e7042bb7e458b"
+  integrity sha512-Jyn421PgZwoJPUodQWxnT+AI1j/u/0aiOu+fSvwQeot4LFCv61QnsD4IkVdYdlb/CnIKZWQIhYVO76RhHHNmhA==
   dependencies:
     react-ssr-prepass "^1.5.0"
 
-"@trpc/react-query@^10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@trpc/react-query/-/react-query-10.7.0.tgz#37cd9a3ab5db0e9bcf012cfec3669ce0ecc055e1"
-  integrity sha512-dSSmYid6NWocU32QMsH6qWEqnW4mbp7hX01hxsBfAA2mGYD8b4Kgc9ripw4MpPNbsJElJFyWDHfb/UHnhywWbA==
+"@trpc/react-query@^10.8.1":
+  version "10.8.1"
+  resolved "https://registry.yarnpkg.com/@trpc/react-query/-/react-query-10.8.1.tgz#54b276d77fffa61d0156dfcc2cfa68299aff10be"
+  integrity sha512-PSpdfPFKM/UlD9VVtXVtfA8ZmqQZUtsP6ER/+QvXjHN6kTZ92PGJGjcL2HWhWZamLKnZSgudiB6sDsl7gPcOgA==
 
-"@trpc/server@^10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.7.0.tgz#97c451cb5963c70fba68f4813c56111331baec3c"
-  integrity sha512-kFhlqhzZt5PwVRRDci8oJKMMFGjjq9189stT6bvS9xuuLjRzzwhMShRi99sm/jqhdjWmlXyO3Ncx0rnghUvH+w==
+"@trpc/server@^10.8.1":
+  version "10.8.1"
+  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.8.1.tgz#7997c675c30e140076c4a7d421e8c23c01645e5d"
+  integrity sha512-oSNYgFNJbjki4jBByJ/SKHasB/X7kTsEbVGaONNH1DHMz638xlYXPQucV+2bWbhCm5HlXhQTaVN7Or0lsCuUUQ==
 
 "@types/dompurify@^2.3.4", "@types/dompurify@^2.4.0":
   version "2.4.0"
@@ -2122,6 +2122,11 @@ dompurify@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.4.1.tgz#f9cb1a275fde9af6f2d0a2644ef648dd6847b631"
   integrity sha512-ewwFzHzrrneRjxzmK6oVz/rZn9VWspGFRDb4/rRtIsM1n36t9AKma/ye8syCpcw+XJ25kOK/hOG7t1j2I2yBqA==
+
+dompurify@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.4.3.tgz#f4133af0e6a50297fc8874e2eaedc13a3c308c03"
+  integrity sha512-q6QaLcakcRjebxjg8/+NP+h0rPfatOgOzc46Fst9VAA3jF2ApfKBNKMzdP4DYTqtUMXSCd5pRS/8Po/OmoCHZQ==
 
 emoji-regex@^9.2.2:
   version "9.2.2"
@@ -3092,10 +3097,10 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
-isomorphic-dompurify@^0.24.0:
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/isomorphic-dompurify/-/isomorphic-dompurify-0.24.0.tgz#d8f2b677fbef8b04b54ba7dae62c468cbc5fe781"
-  integrity sha512-YePhHHQAVsU1CYkL3gKQmga+fTAh66eWg+RVQOVFRNfzoLkd+gFhFY5S+g80f8b0v2JBMYg+npqdZI1vOxTOBQ==
+isomorphic-dompurify@^0.25.0:
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-dompurify/-/isomorphic-dompurify-0.25.0.tgz#c2ae54fa3f5be325856dadfdf07a1ca8bc3fc685"
+  integrity sha512-72pABCLUasDebg+XOdgcRZbgpndsR/jB+2PPobO3aO3YitwcBM4x7avEENtzLO2Jvg/9mJCXcjVYW+etfEMBFA==
   dependencies:
     "@types/dompurify" "^2.3.4"
     dompurify "^2.4.1"
@@ -3625,17 +3630,17 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.1.tgz#4e1fd11c34e2421bc1da9aea9bd8127cd0a35efc"
-  integrity sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==
+prettier@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.2.tgz#c4ea1b5b454d7c4b59966db2e06ed7eec5dfd160"
+  integrity sha512-BtRV9BcncDyI2tsuS19zzhzoxD8Dh8LiCx7j7tHzrkz8GFXAexeWFdi22mjE1d16dftH2qNaytVxqiRTGlMfpw==
 
-prisma@^4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.8.0.tgz#634dbbdc9d3f76c61604880251673d08ccb6f02b"
-  integrity sha512-DWIhxvxt8f4h6MDd35mz7BJff+fu7HItW3WPDIEpCR3RzcOWyiHBbLQW5/DOgmf+pRLTjwXQob7kuTZVYUAw5w==
+prisma@^4.8.1:
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.8.1.tgz#ef93cd908809b7d02e9f4bead5eea7733ba50c68"
+  integrity sha512-ZMLnSjwulIeYfaU1O6/LF6PEJzxN5par5weykxMykS9Z6ara/j76JH3Yo2AH3bgJbPN4Z6NeCK9s5fDkzf33cg==
   dependencies:
-    "@prisma/engines" "4.8.0"
+    "@prisma/engines" "4.8.1"
 
 prismjs@^1.8.4:
   version "1.29.0"
@@ -3799,10 +3804,10 @@ react-syntax-highlighter@^12.2.1:
     prismjs "^1.8.4"
     refractor "^2.4.1"
 
-react-wrap-balancer@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/react-wrap-balancer/-/react-wrap-balancer-0.2.4.tgz#1f112df575958400f253186aa9a7fd5ee9528ed1"
-  integrity sha512-MVL9/Tw1X72t0i5Y/2j3YmSx1vkJJ22b5Vb+vZ/IOEdq7r9JPNzTfnfkB8wrl98Jwx+F6VCwJXmU7a1lT5PtCA==
+react-wrap-balancer@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-wrap-balancer/-/react-wrap-balancer-0.3.0.tgz#cb100bd05372e2282135f95d5aff65898fe79dca"
+  integrity sha512-UlnQvCvSRW0jh8uILic2LJs4tV0KjOO+P70ookE5qRpfZvsKmY8KLcV8s7TBPB6cuVYkoH7+fbqankFrFata8w==
 
 react@18.2.0:
   version "18.2.0"
