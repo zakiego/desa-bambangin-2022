@@ -52,7 +52,7 @@ const Card: React.FC<GetAllPosts["posts"]> = ({
             src={thumbnail ? getImage(thumbnail) : dummyImage}
             fill
             quality={30}
-            alt={`image ${post_name}`}
+            alt={`${post_name}`}
             style={{
               objectFit: "cover",
               borderRadius: "0.375rem",
