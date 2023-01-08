@@ -20,6 +20,10 @@ import { trpc } from "~/src/utils/trpc";
 const BeritaSlug: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   slug,
 }) => {
+  if (!slug) {
+    return <Loading />;
+  }
+
   const { data, isError: errorPostDetail } = trpc.post.getPostDetail.useQuery({
     slug,
   });
@@ -133,6 +137,8 @@ export async function getStaticProps(
   });
 
   const slug = context.params?.slug as string;
+
+  console.log("Slug : ", slug);
 
   await ssg.post.getPostDetail.prefetch({ slug });
   await ssg.post.getAllPosts.prefetch({
