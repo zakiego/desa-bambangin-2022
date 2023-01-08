@@ -53,6 +53,8 @@ export const Hero: React.FC<Props> = ({ title, date, thumbnail }) => {
           objectFit: "cover",
           position: "absolute",
         }}
+        quality={50}
+        priority
       />
 
       <Container maxW="container.xl" h="full" position="relative" zIndex="2">
