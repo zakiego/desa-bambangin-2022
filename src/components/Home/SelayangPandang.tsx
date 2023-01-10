@@ -1,9 +1,13 @@
 import { Box, Button, Container, Heading, Stack, Text } from "@chakra-ui/react";
+import DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
 import { GoChevronRight } from "react-icons/go";
-import Balancer from "react-wrap-balancer";
 
-export const SelayangPandang = () => {
+interface Props {
+  content: string;
+}
+
+export const SelayangPandang: React.FC<Props> = ({ content }) => {
   return (
     <Box bg="gray.50" px={{ base: "6", md: 0 }} pb="8">
       <Container
@@ -17,7 +21,13 @@ export const SelayangPandang = () => {
         py="6"
         bg="white"
       >
-        <Stack w={{ base: "100%", md: "70%" }} spacing="6">
+        <Stack
+          w={{
+            base: "100%",
+            // md: "70%"
+          }}
+          spacing="6"
+        >
           <Heading
             as="h3"
             size={{ base: "md", md: "lg" }}
@@ -25,18 +35,19 @@ export const SelayangPandang = () => {
           >
             Selayang Pandang
           </Heading>
-          <Text lineHeight="tall" color="blackAlpha.700">
-            <Balancer>
-              Desa Bambangin merupakan sebuah desa yang terletak di Kabupaten
-              Barito Kuala, Provinsi Kalimantan Selatan. Desa ini memiliki
-              kebudayaan yang kental dan mayoritas penduduknya adalah keturunan
-              Gusti. Kebudayaan yang kental ini dapat terlihat dari banyaknya
-              adat istiadat yang masih terjaga hingga sekarang, serta
-              keberlangsungan tradisi yang masih dijalankan oleh masyarakat Desa
-              Bambangin.
-            </Balancer>
-          </Text>
-          <Text
+
+          {/* <Balancer> */}
+          <Box
+            lineHeight="taller"
+            noOfLines={{ base: 8, md: 5 }}
+            color="blackAlpha.700"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(content),
+            }}
+          />
+          {/* </Balancer> */}
+
+          {/* <Text
             lineHeight="tall"
             display={{ base: "none", md: "block" }}
             color="blackAlpha.700"
@@ -50,7 +61,7 @@ export const SelayangPandang = () => {
               terkenal dengan kemampuannya dalam mengelola pertanian, terutama
               dalam hal pengolahan jeruk.
             </Balancer>
-          </Text>
+          </Text> */}
 
           <Link href="/profil-desa">
             <Button

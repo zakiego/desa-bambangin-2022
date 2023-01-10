@@ -17,6 +17,7 @@ export async function getStaticProps() {
     transformer: SuperJSON, // optional - adds superjson serialization
   });
 
+  await ssg.post.getPostDetail.prefetch({ slug: "profil-desa" });
   await ssg.post.getAllPosts.prefetch({
     page: 1,
     category: "berita",
@@ -32,17 +33,29 @@ export async function getStaticProps() {
 }
 
 const Index: React.FC = () => {
-  const { data, isError } = trpc.post.getAllPosts.useQuery({
+  const {
+    data: dataBerita,
+    isLoading: isLoadingBerita,
+    isError: isErrorBerita,
+  } = trpc.post.getAllPosts.useQuery({
     page: 1,
     category: "berita",
     limit: 3,
   });
 
-  if (isError) {
+  const {
+    data: dataProfil,
+    isLoading: isLoadingProfil,
+    isError: isErrorProfil,
+  } = trpc.post.getPostDetail.useQuery({
+    slug: "profil-desa",
+  });
+
+  if (isErrorBerita || isErrorProfil) {
     return <Error />;
   }
 
-  if (!data) {
+  if (isLoadingBerita || isLoadingProfil) {
     return <Loading />;
   }
 
@@ -51,8 +64,8 @@ const Index: React.FC = () => {
       <Stack minH="100vh" bg="gray.50" spacing="0">
         <Navbar />
         <HeroHome />
-        <SelayangPandang />
-        <Highlight berita={data.posts} />
+        <SelayangPandang content={dataProfil.post_content} />
+        <Highlight berita={dataBerita.posts} />
         <Footer />
       </Stack>
     </PageWrapper>
