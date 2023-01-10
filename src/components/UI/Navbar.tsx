@@ -18,7 +18,7 @@ const listMobileMenu = [
   { name: "Beranda", href: "/" },
   { name: "Berita Bambangin", href: "/berita" },
   { name: "Profil Desa", href: "/profil-desa" },
-  { name: "Sejarah Bambangin", href: "/sejarah" },
+  // { name: "Sejarah Bambangin", href: "/sejarah" },
 ];
 
 export const Navbar = () => {
@@ -82,7 +82,12 @@ const RightDesktop = () => {
           Berita Bambangin
         </Button>
       </Link>
-      <Menu>
+      <Link href="/profil-desa">
+        <Button variant="navbar" fontSize="md">
+          Profil Bambangin
+        </Button>
+      </Link>
+      {/* <Menu>
         <MenuButton
           as={Button}
           variant="navbar"
@@ -96,7 +101,7 @@ const RightDesktop = () => {
           </Link>
           <MenuItem>Sejarah Bambangin</MenuItem>
         </MenuList>
-      </Menu>
+      </Menu> */}
     </HStack>
   );
 };
