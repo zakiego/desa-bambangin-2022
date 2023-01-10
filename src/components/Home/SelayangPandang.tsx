@@ -1,4 +1,4 @@
-import { Box, Button, Container, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Heading, Stack } from "@chakra-ui/react";
 import DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
 import { GoChevronRight } from "react-icons/go";
