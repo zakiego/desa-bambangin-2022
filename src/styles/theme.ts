@@ -58,6 +58,9 @@ const theme = extendTheme(
         marginLeft: "auto",
         marginRight: "auto",
       },
+      a: {
+        color: "primary.600",
+      },
     },
   }),
 );
