@@ -6,7 +6,7 @@ export const HOME_OG_IMAGE_URL =
 export const DUMMY_IMAGE =
   "https://images.unsplash.com/photo-1559628233-100c798642d4";
 
-export const ONE_DAY_IN_SECONDS = 86400
+export const ONE_DAY_IN_SECONDS = 86400;
 const ONE_MINUTE_IN_SECONDS = 60;
 const ONE_SECOND = 1;
 export const REVALIDATE_WP_POSTS = ONE_MINUTE_IN_SECONDS;
