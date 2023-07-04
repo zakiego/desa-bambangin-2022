@@ -150,6 +150,6 @@ export async function getStaticProps(
       trpcState: ssg.dehydrate(),
       slug,
     },
-    revalidate: REVALIDATE_WP_POSTS,
+    // revalidate: REVALIDATE_WP_POSTS,
   };
 }

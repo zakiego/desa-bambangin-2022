@@ -28,7 +28,7 @@ export async function getStaticProps() {
     props: {
       trpcState: ssg.dehydrate(),
     },
-    revalidate: REVALIDATE_WP_POSTS,
+    // revalidate: REVALIDATE_WP_POSTS,
   };
 }
 
